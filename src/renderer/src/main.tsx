@@ -1,5 +1,6 @@
 import { MantineProvider } from '@mantine/core'
 import './assets/main.css'
+import '@mantine/core/styles.css';
 
 import React from 'react'
 import ReactDOM from 'react-dom/client'

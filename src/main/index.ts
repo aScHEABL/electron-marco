@@ -51,7 +51,7 @@ app.whenReady().then(() => {
 
   // IPC from render
   ipcMain.on('set-marco', (_, dataObject) => {
-    console.log("Receive marco from renderer:", dataObject)
+    console.log("Received marco from renderer:", dataObject)
   })
 
   createWindow()
