@@ -13,7 +13,7 @@ function createWindow(): void {
     ...(process.platform === 'linux' ? { icon } : {}),
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'),
-      sandbox: false
+      sandbox: false,
     }
   })
 
@@ -49,8 +49,10 @@ app.whenReady().then(() => {
     optimizer.watchWindowShortcuts(window)
   })
 
-  // IPC test
-  ipcMain.on('ping', () => console.log('pong'))
+  // IPC from render
+  ipcMain.on('set-marco', (_, dataObject) => {
+    console.log("Receive marco from renderer:", dataObject)
+  })
 
   createWindow()
 
