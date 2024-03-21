@@ -3,16 +3,14 @@ import { useState, useEffect, ReactElement, Fragment } from 'react';
 import { ActionIcon, Flex, Drawer, Modal, Button, Kbd, Center } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 
-import helldiversLogo from '../assets/images/helldivers-logo.webp';
+import helldiversLogo from '../assets/icons/helldivers-logo.webp';
+// import stratagem from '../stratagem.js';
+
 import { IoMdAdd } from "react-icons/io";
 import { IoSettingsOutline } from "react-icons/io5";
 
 
 function keyboardIcon(array: string[]) {
-    // array.forEach((item, index) => {
-    //     const key: string = array[index];
-    //     arrayWithIcon.push(<kbd>{key}</kbd>)
-    // })
     return (
         <Fragment>
             {array.map((element, index) => (
@@ -49,24 +47,23 @@ export default function InitialState(): JSX.Element {
     }
 
     useEffect(() => {
+        // If pressedKeys array has equal or more than 3 keys, stop recording
         if (pressedKeys.length >= 3) {
             setIsRecording(false);
         }
-
+        // If a key is pressed, and then if both recording and key is not repeated, record the key
         const handleKeyDown = (event) => {
             if (isRecording === true && !pressedKeys.includes(event.key)) {
                 if (pressedKeys.length >= 3) {
                     return;
-                } else {
-                    setPressedKeys((prevPressedKeys) => [...prevPressedKeys, event.key]);
-                }
+                } else setPressedKeys((prevPressedKeys) => [...prevPressedKeys, event.key]);
             }
         }
-
+        // Add event listener for key down
         if (isRecording) {
             document.addEventListener('keydown', handleKeyDown);
         }
-
+        // Clear the event listener after re-render
         return () => {
             document.removeEventListener('keydown', handleKeyDown);
         };
@@ -93,6 +90,11 @@ export default function InitialState(): JSX.Element {
                     </Fragment>
                 :
                     keyboardIcon(pressedKeys) }
+
+                {/* { isRecording === true ?
+                null
+                :
+                <p>{stratagem[0].englishName}</p>} */}
 
                 {/* <Center>
                     <Button variant="outline" color="cyan">Record</Button>
