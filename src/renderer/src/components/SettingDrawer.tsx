@@ -1,8 +1,8 @@
 import { Drawer } from "@mantine/core"
 
-export default function SettingDrawer() {
+export default function SettingDrawer({ props }) {
     return (
-        <Drawer opened={openedSettings} onClose={closeSettings} title="Settings">
+        <Drawer opened={props.openedSetting} onClose={props.closeSetting} title="Settings">
 
         </Drawer>
     )
