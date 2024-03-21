@@ -1,10 +1,10 @@
 import { useState, useEffect, ReactElement, Fragment } from 'react';
 
-import { ActionIcon, Flex, Drawer, Modal, Button, Kbd, Center } from '@mantine/core';
+import { ActionIcon, Flex, Drawer, Modal, Button, Kbd, Image, Box } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 
 import helldiversLogo from '../assets/icons/helldivers-logo.webp';
-// import stratagem from '../stratagem.js';
+import stratagem from '../stratagem';
 
 import { IoMdAdd } from "react-icons/io";
 import { IoSettingsOutline } from "react-icons/io5";
@@ -27,7 +27,7 @@ export default function InitialState(): JSX.Element {
     const [pressedKeys, setPressedKeys] = useState<string[]>([]);
     const [isRecording, setIsRecording] = useState(false);
     const [openedSettings, { open: openSettings, close: closeSettings }] = useDisclosure(false);
-    const [openedAddMarcoMenu, { open: openAddMarcoMenu, close: closeAddMarcoMenu }] = useDisclosure(false);
+    const [openedAddMarcoModal, { open: openAddMarcoModal, close: closeAddMarcoModal }] = useDisclosure(false);
 
     const sendMarco = () => {
         // window.electron.ipcRenderer.send('set-marco', { oribitalAirbrust: "D+D+D" })
@@ -36,13 +36,13 @@ export default function InitialState(): JSX.Element {
 
     const handleAddMenuOpen = () => {
         setPressedKeys([]);
-        openAddMarcoMenu();
+        openAddMarcoModal();
         setIsRecording(true);
     }
 
     const handleAddMenuClose = () => {
         setPressedKeys([]);
-        closeAddMarcoMenu();
+        closeAddMarcoModal();
         setIsRecording(false);
     }
 
@@ -75,43 +75,43 @@ export default function InitialState(): JSX.Element {
 
             </Drawer>
 
-            <Modal opened={openedAddMarcoMenu} onClose={handleAddMenuClose} title="" centered
+            <Modal opened={openedAddMarcoModal} onClose={handleAddMenuClose} title="" centered
             pos="absolute" style={{
                 left: 0,
             }}
             >   
-                { isRecording === true ? 
-                    <Fragment>
-                        <p className="tip">
-                            Press any <code>key</code> to bind shortcuts.<br />
-                            Maximum 3 keys
-                        </p>
-                        { pressedKeys.length === 0 ? null : keyboardIcon(pressedKeys) }
-                    </Fragment>
-                :
-                    keyboardIcon(pressedKeys) }
+                    { isRecording === true ? 
+                        <Fragment>
+                            <p className="tip">
+                                Press any <code>key</code> to bind shortcuts.<br />
+                                Maximum 3 keys
+                            </p>
+                            { pressedKeys.length === 0 ? null : keyboardIcon(pressedKeys) }
+                        </Fragment>
+                    :
+                        <Flex justify="space-around" align="center" mb={16}>
+                            <Box>
+                                { keyboardIcon(pressedKeys) }
+                            </Box>
+                            { isRecording === false ? <Button variant="outline" color='cyan'>Stratagem</Button> : null }
+                        </Flex>
+                        }
 
-                {/* { isRecording === true ?
-                null
-                :
-                <p>{stratagem[0].englishName}</p>} */}
 
-                {/* <Center>
-                    <Button variant="outline" color="cyan">Record</Button>
-                </Center> */}
-
-                
+                    {/* <Center>
+                        <Button variant="outline" color="cyan">Record</Button>
+                    </Center> */}
 
                 <Flex justify="flex-end" gap="md">
                     {isRecording ? 
                     <Button onClick={() => {setIsRecording(false)}}>Stop Recording</Button>
                     :
-                    <Button onClick={closeAddMarcoMenu}>Save</Button>}
+                    <Button onClick={closeAddMarcoModal}>Save</Button>}
                 </Flex>
             </Modal>
 
             <img alt="logo" className="logo" src={helldiversLogo} />
-            <div className="creator">Developed by Defalt</div>
+            <div className="creator">Developed by u/defalt0_0</div>
             <Flex gap="md">
                 <ActionIcon variant='outline' color='gray' radius="xl" aria-label="add-button" onClick={() => { handleAddMenuOpen(); }}>
                     <IoMdAdd />
