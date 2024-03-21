@@ -1,5 +1,7 @@
-import { Modal, Flex, Box, Button, Kbd } from "@mantine/core"
-import { Fragment, useEffect } from "react"
+import { Modal, Flex, Box, Button, Kbd } from "@mantine/core";
+import { Fragment, useEffect } from "react";
+
+import SearchableSelect from "./SearchableSelect";
 
 function keyboardIcon(array: string[]) {
     return (
@@ -39,8 +41,12 @@ export default function MarcoModal({ props }) {
         };
     }, [props.pressedKeys, props.isRecording])
     return (
-        <Modal opened={props.openedMarcoModal} onClose={props.handleMarcoModalClose} title="" centered
-            pos="absolute" style={{
+        <Modal
+            opened={props.openedMarcoModal}
+            onClose={props.handleMarcoModalClose} title="" 
+            size="60%"
+            pos="absolute" 
+            style={{
                 left: 0,
             }}
             >   
@@ -57,7 +63,12 @@ export default function MarcoModal({ props }) {
                             <Box>
                                 { keyboardIcon(props.pressedKeys) }
                             </Box>
-                            { props.isRecording === false ? <Button variant="outline" color='cyan'>Stratagem</Button> : null }
+                            { props.isRecording === false ?
+                            <>
+                                <SearchableSelect />
+                            </>
+                            :
+                            null }
                         </Flex>
                         }
 
