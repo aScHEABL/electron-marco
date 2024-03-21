@@ -1,5 +1,5 @@
 import { Modal, Flex, Box, Button, Kbd } from "@mantine/core";
-import { Fragment, useEffect } from "react";
+import { Fragment, useEffect, useState } from "react";
 
 import SearchableSelect from "./SearchableSelect";
 
@@ -17,6 +17,7 @@ function keyboardIcon(array: string[]) {
 }
 
 export default function MarcoModal({ props }) {
+    const [value, setValue] = useState<string | null>(null);
 
     useEffect(() => {
         // If pressedKeys array has equal or more than 3 keys, stop recording
@@ -65,7 +66,7 @@ export default function MarcoModal({ props }) {
                             </Box>
                             { props.isRecording === false ?
                             <>
-                                <SearchableSelect />
+                                <SearchableSelect value={value} setValue={setValue} />
                             </>
                             :
                             null }

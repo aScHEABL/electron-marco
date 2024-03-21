@@ -7,12 +7,12 @@ import { selectOptions } from "@renderer/stratagem";
 const allSelectOptions = 
 selectOptions.reduce<string[]>((acc, group) => [...acc, ...group.options], []);
 
-export default function SearchableSelect() {
+export default function SearchableSelect({ value, setValue }) {
     const combobox = useCombobox({
         onDropdownClose: () => combobox.resetSelectedOption(),
     });
 
-    const [value, setValue] = useState<string | null>(null);
+    // const [value, setValue] = useState<string | null>(null);
     const [search, setSearch] = useState('');
 
     const shouldFilterOptions = allSelectOptions.every((item) => item !== search);
@@ -41,9 +41,8 @@ export default function SearchableSelect() {
     });
 
     useEffect(() => {
-        // console.log(selectOptions);
-        console.log(allSelectOptions);
-    }, [])
+        console.log(value);
+    }, [value])
     return (
         <Combobox
             store={combobox}
