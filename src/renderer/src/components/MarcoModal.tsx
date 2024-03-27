@@ -19,6 +19,11 @@ function keyboardIcon(array: string[]) {
 export default function MarcoModal({ props }) {
     const [value, setValue] = useState<string | null>(null);
 
+    const handleSaveBtn = () => {
+        props.setActiveMarco((prevMarco) => [...prevMarco, value]);
+        props.closeMarcoModal();
+    }
+
     useEffect(() => {
         // If pressedKeys array has equal or more than 3 keys, stop recording
         if (props.pressedKeys.length >= 3) {
@@ -77,7 +82,7 @@ export default function MarcoModal({ props }) {
                     {props.isRecording ? 
                     <Button onClick={() => {props.setIsRecording(false)}}>Stop Recording</Button>
                     :
-                    <Button onClick={props.closeMarcoModal}>Save</Button>}
+                    <Button onClick={handleSaveBtn}>Save</Button>}
                 </Flex>
             </Modal>
     )
