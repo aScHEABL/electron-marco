@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { Flex, ActionIcon, Container, Box, Text } from "@mantine/core";
+import { Flex, ActionIcon, Container, Box, Text, Stack } from "@mantine/core";
 import { useDisclosure, useListState } from "@mantine/hooks";
 
 import helldiversLogo from './assets/icons/helldivers-logo.webp';
@@ -77,11 +77,16 @@ function App() {
               //     </Box>
               //   ))}
               // </Container>
-                <>
+                // <>
                   <DndListHandle props={DndListProps} />
-                </>
+                // </>
               :
-                <>
+                <Stack justify="center" align="center" mih="100vh" maw="30vw"
+                style={{
+                  overflow: "hidden",
+
+                }}
+                >
                   <img alt="logo" className="logo" src={helldiversLogo} />
                   <div className="creator">Developed by u/defalt0_0</div>
                     <Flex gap="md">
@@ -92,7 +97,7 @@ function App() {
                           <IoSettingsOutline />
                       </ActionIcon>
                     </Flex>
-                </>
+                </Stack>
             }
       <MarcoModal props={modalProps} />
       <SettingDrawer props={settingProps} />
