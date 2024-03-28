@@ -38,9 +38,9 @@ export default function SearchableSelect({ value, setValue }) {
         );
     });
 
-    useEffect(() => {
-        console.log(allSelectOptions);
-    }, [value])
+    // useEffect(() => {
+    //     console.log(allSelectOptions);
+    // }, [value])
     return (
         <Combobox
             store={combobox}

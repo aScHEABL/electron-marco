@@ -20,7 +20,8 @@ export default function MarcoModal({ props }) {
     const [value, setValue] = useState<string | null>(null);
 
     const handleSaveBtn = () => {
-        props.setActiveMarco((prevMarco) => [...prevMarco, value]);
+        // props.activeMarcosHandlers((prevMarco) => [...prevMarco, value]);
+        props.activeMarcosHandlers.append([value]);
         props.closeMarcoModal();
     }
 
