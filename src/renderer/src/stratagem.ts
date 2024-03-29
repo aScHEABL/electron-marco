@@ -11,24 +11,39 @@ interface TestOption {
 
 export const stratagem = [
     {
-        "englishName": "MG-43 Machine Gun",
-        "chineseName": "MG-43 機關槍",
-        "keyCombinations": "saswd"
+        englishName: "MG-43 Machine Gun",
+        chineseName: "MG-43 機關槍",
+        keyCombinations: "saswd"
     },
     {
-        "englishName": "Anti-Material Rifle",
-        "chineseName": "反器材步槍",
-        "keyCombinations": "sadws"
+        englishName: "Anti-Material Rifle",
+        chineseName: "反器材步槍",
+        keyCombinations: "sadws"
     },
     {
-        "englishName": "Stalwart",
-        "chineseName": "",
-        "keyCombinations": "saswwa"
+        englishName: "Stalwart",
+        chineseName: "",
+        keyCombinations: "saswwa"
     },
     {
-        "englishName": "Expendable Anti-Tank",
-        "chineseName": "",
-        "keyCombinations": "ssawd"
+        englishName: "Expendable Anti-Tank",
+        chineseName: "",
+        keyCombinations: "ssawd"
+    },
+    {
+        englishName: "Gatling Barrage",
+        chineseName: "",
+        keyCombinations: "wsaww"
+    },
+    {
+        englishName: "Airburst Strike",
+        chineseName: "",
+        keyCombinations: "ddd"
+    },
+    {
+        englishName: "120MM HE Barrage",
+        chineseName: "",
+        keyCombinations: "dssasdss",
     }
 ]
 
@@ -69,7 +84,8 @@ export const testSelectOptions: TestSelectOption[] = [
                 englishName: "Expendable Anti-Tank",
                 chineseName: "",
                 keyCombinations: "ssawd"
-            }]
+            }
+        ]
     },
     {
         label: 'Orbital',

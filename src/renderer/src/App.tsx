@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState, Fragment, useEffect } from "react";
 
-import { Flex, ActionIcon, Container, Box, Text, Stack } from "@mantine/core";
+import { Flex, ActionIcon, Stack, Kbd } from "@mantine/core";
 import { useDisclosure, useListState } from "@mantine/hooks";
 
 import helldiversLogo from './assets/icons/helldivers-logo.webp';
@@ -13,7 +13,8 @@ import SettingDrawer from "./components/SettingDrawer";
 import DndListHandle from "./components/DndListHandle";
 
 function App() {
-  const [pressedKeys, setPressedKeys] = useState<string[]>([]);
+  // const [pressedKeys, setPressedKeys] = useState<string[]>([]);
+  const [recordedKeys, setRecordedKeys] = useState<string[]>([]);
   const [isRecording, setIsRecording] = useState(false);
   // const [activeMarcos, setActiveMarco] = useState<string[]>([]);
   const [activeMarcos, activeMarcosHandlers] = useListState([]);
@@ -22,8 +23,8 @@ function App() {
   const [openedMarcoModal, { open: openMarcoModal, close: closeMarcoModal }] = useDisclosure(false);
 
   const modalProps = {
-    pressedKeys,
-    setPressedKeys,
+    recordedKeys,
+    setRecordedKeys,
     isRecording,
     setIsRecording,
     openedMarcoModal,
@@ -32,6 +33,7 @@ function App() {
     handleMarcoModalClose,
     activeMarcos,
     activeMarcosHandlers,
+    keyboardIcon,
   }
 
   const settingProps = {
@@ -43,32 +45,48 @@ function App() {
   const DndListProps = {
     activeMarcos,
     activeMarcosHandlers,
+    keyboardIcon,
   }
 
   function handleMarcoModalOpen() {
-    setPressedKeys([]);
+    setRecordedKeys([]);
     openMarcoModal();
     setIsRecording(true);
   }
 
   function handleMarcoModalClose() {
-    setPressedKeys([]);
+    setRecordedKeys([]);
     closeMarcoModal();
     setIsRecording(false);
   }
 
-  // useEffect(() => {
-  //   if (activeMarcos.length >= 1) {
-  //     console.log(activeMarcos);
-  //   }
-  // }, [activeMarcos]);
+  function keyboardIcon(array: string[]) {
+    return (
+        <Fragment>
+            {array.map((element, index) => (
+                <Fragment key={index}>
+                    <Kbd>{element}</Kbd>
+                    {index < array.length - 1 && " + "}
+                </Fragment>
+            ))}
+        </Fragment>
+    )
+}
+
+  useEffect(() => {
+    if (activeMarcos.length >= 1) {
+      console.log(activeMarcos);
+    }
+  }, [activeMarcos]);
 
   return (
     <>
             {
 
               activeMarcos.length >= 1 ?
-                <DndListHandle props={DndListProps} />
+                // <DndListHandle props={DndListProps} />
+                <Fragment>
+                </Fragment>
               :
                 <Stack justify="center" align="center" mih="100vh" maw="30vw"
                 style={{
