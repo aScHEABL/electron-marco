@@ -68,18 +68,7 @@ function App() {
             {
 
               activeMarcos.length >= 1 ?
-              // <Container>
-              //   {activeMarcos.map((item, index) => (
-              //     <Box key={index}>
-              //         <Text>
-              //           {item}
-              //         </Text>
-              //     </Box>
-              //   ))}
-              // </Container>
-                // <>
-                  <DndListHandle props={DndListProps} />
-                // </>
+                <DndListHandle props={DndListProps} />
               :
                 <Stack justify="center" align="center" mih="100vh" maw="30vw"
                 style={{

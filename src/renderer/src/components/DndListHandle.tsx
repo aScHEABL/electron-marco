@@ -3,6 +3,8 @@ import { ActionIcon, rem, Text, Group, Container } from '@mantine/core';
 import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd';
 import { IconGripVertical } from '@tabler/icons-react';
 import { MdOutlineModeEdit } from "react-icons/md";
+import { RiDeleteBin6Line } from "react-icons/ri";
+import { IoMdAdd } from "react-icons/io";
 import { IoSettingsOutline } from "react-icons/io5";
 import classes from './DndListHandle.module.css';
 
@@ -30,7 +32,7 @@ export default function DndListHandle({ props }) {
                 <MdOutlineModeEdit />
             </ActionIcon>
             <ActionIcon variant="outline" aria-label="Settings">
-                <IoSettingsOutline />
+                <RiDeleteBin6Line />
             </ActionIcon>
           </Group>
         </div>
@@ -39,21 +41,31 @@ export default function DndListHandle({ props }) {
   ));
 
   return (
-    <Container w="22rem">
-        <DragDropContext
-        onDragEnd={({ destination, source }) =>
-            props.activeMarcosHandlers.reorder({ from: source.index, to: destination?.index || 0 })
-        }
-        >
-            <Droppable droppableId="dnd-list" direction="vertical">
-                {(provided) => (
-                <div {...provided.droppableProps} ref={provided.innerRef}>
-                    {items}
-                    {provided.placeholder}
-                </div>
-                )}
-            </Droppable>
-        </DragDropContext>
-    </Container>
+    <>
+      <Group w="100%" justify='flex-end' py={16} px={24} gap="sm">
+        <ActionIcon>
+          <IoMdAdd />
+        </ActionIcon>
+        <ActionIcon>
+          <IoSettingsOutline />
+        </ActionIcon>
+      </Group>
+      <Container w="22rem">
+          <DragDropContext
+          onDragEnd={({ destination, source }) =>
+              props.activeMarcosHandlers.reorder({ from: source.index, to: destination?.index || 0 })
+          }
+          >
+              <Droppable droppableId="dnd-list" direction="vertical">
+                  {(provided) => (
+                  <div {...provided.droppableProps} ref={provided.innerRef}>
+                      {items}
+                      {provided.placeholder}
+                  </div>
+                  )}
+              </Droppable>
+          </DragDropContext>
+      </Container>
+    </>
   );
 }
