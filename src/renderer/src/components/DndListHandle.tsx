@@ -21,8 +21,8 @@ export default function DndListHandle({ props }) {
             <IconGripVertical style={{ width: rem(18), height: rem(18) }} stroke={1.5} />
           </div>
           {/* <Text className={classes.symbol}>{item.symbol}</Text> */}
-          <Group gap="xs">
-            <Text>{item}</Text>
+          <Text>{item}</Text>
+          <Group gap="xs" pos="absolute" right="5%">
             {/* <Text c="dimmed" size="sm">
               Position: {item.position} • Mass: {item.mass}
             </Text> */}
